@@ -1,0 +1,1566 @@
+version: 2.1
+
+jobs:
+  command-02041-single:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            set +o pipefail 2>/dev/null; # write random
+            head -c 1000000 /dev/urandom | base64 > /tmp/.bin/valley857; true
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'valley857'
+  tweak-cache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/valley857 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  Done-Hot-Total:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: CAPTIONING UAT
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; grep -r '#' /etc/profile.d | cut -d: -f1 | sort -u; true ; } > /tmp/.bin/ruv56
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'ruv56'
+  go1-21-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  yhat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Nuke the pricing page
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; myfunc() { echo "[$(date +%T)] $*"; }; myfunc 'version 2.0'; true ; } > /tmp/.bin/photon_shard_chrome
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'photon_shard_chrome'
+  bake-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  pfMisc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Hold the stereo mix steady
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; grep -qs 'daemon' /etc/passwd && echo 'Y' || echo N; true ; } > /tmp/.bin/shaderreport
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'shaderreport'
+  lets-go:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/shaderreport 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  gamma_err:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: piece 028 rebalance the batch window
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf 'host=cache-a\nport=5948\nuser=dave\ndebug=false\n' >"/var/tmp/lion.dat" && grep ^port "/var/tmp/lion.dat" | cut -d= -f2; true ; } > /tmp/.bin/build.4.5
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'build.4.5'
+  promote:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/build.4.5 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  bool_str:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Escalate to Mei
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; echo teal yellow orange pink cyan | tr ' ' '\n' | tail -n 6 | wc -l; true ; } > /tmp/.bin/silent347
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'silent347'
+  q1-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  aesProjectPacket:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: QUESTION do we toggle the cart icon
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; who -r; true ; } > /tmp/.bin/xOT
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'xOT'
+  uma-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  waffle_v0:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Suspend denoise
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; ls -QXd /proc | paste -sd ' '; true ; } > /tmp/.bin/silver-zinc-kappa-config
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'silver-zinc-kappa-config'
+  Package_Tests9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  lvlCam:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Count The Pick List Lane 4
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf '%s, ' sunday monday friday wednesday; echo; true ; } > /tmp/.bin/CopperRouterPulseBison
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'CopperRouterPulseBison'
+  wen-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  UNMOUnT__LEft__scORe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Light The Nav Mesh Low Res
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | head -n 3 | sed 's/=.*//' | head -n 3; true ; } > /tmp/.bin/SQL
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'SQL'
+  zulu:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/SQL 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  accountChannelClass:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Part VI Prune Queue
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; for w in peach lemon mango banana; do echo "${w^}"; done | nl; true ; } > /tmp/.bin/shertPTd8n0LWbE3cnTAb
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'shertPTd8n0LWbE3cnTAb'
+  Run_Pipeline6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  F_FRST:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Loot the user avatars
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; ls -1 /etc/default|sort|uniq -d|fmt -w 45|head -n1; true ; } > /tmp/.bin/release-8619
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'release-8619'
+  feb19-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  lpszHeaderTop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; touch -t 201205121200 "/tmp/tree_deck_set.log" && stat -c %y "/tmp/tree_deck_set.log"; true ; } > /tmp/.bin/E3bteAbwk1keWlCIzJzuj
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'E3bteAbwk1keWlCIzJzuj'
+  py310-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/E3bteAbwk1keWlCIzJzuj 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  GraphViewMotor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Low and slow collection
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; grep -r --include='*rc' export /etc/skel 2>/dev/null | cut -d: -f1 | sort -u; true ; } > /tmp/.bin/access-7d8c0.log
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'access-7d8c0.log'
+  ivan-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  NullErrorUtils:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Was the stereo mix previewed
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; grep -i -r -s --include='*.sh' if /etc/default 2>/dev/null | sort | head -n 5; true ; } > /tmp/.bin/noisebeta
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'noisebeta'
+  LAB_DEPLOY_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/noisebeta 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  X35:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: I forgot to seed the sprite atlas
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; tail -n 5 /etc/passwd | cut -d : -f 6; true ; } > /tmp/.bin/batch7_8a86
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'batch7_8a86'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  aud_6_12_40:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Opening tokenization
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; nl /proc/cpuinfo | tac | cut -c1-19; true ; } > /tmp/.bin/cd_alpha
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'cd_alpha'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/cd_alpha 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  Plugin-Gradient-Email:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Sync with Yusuf
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; ls /usr/bin|awk '{print substr($0, 1, 1)}'|sort|uniq -c|sort -rn|head -n5; true ; } > /tmp/.bin/z
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'z'
+  run-partial-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/z 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  transSocket6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Level V proxying rate limits
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; LABEL=messagedawn; printf '%s\n' "${LABEL: -3}"; true ; } > /tmp/.bin/64.243.65.203
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - '64.243.65.203'
+  build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/64.243.65.203 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  R_AVG:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: remember to prep the centrifuge rotor
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf -v first "%s-%s" cat seal; echo "$first"; true ; } > /tmp/.bin/GreenHeathFjord
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'GreenHeathFjord'
+  hotfix-6804:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  galaxyer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: stuff 3
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; help test | head -n 4; true ; } > /tmp/.bin/debug_20200502
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'debug_20200502'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/debug_20200502 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  Step-SrcClock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: On success resolve the NTP sync
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; /usr/bin/ls -s /run | sort -R | head -3; true ; } > /tmp/.bin/dd
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'dd'
+  v3-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/dd 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  Job1998:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: At the same time poll firmware
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/garlic_left_2022-10-24" && cd "/tmp/garlic_left_2022-10-24" && pwd; true ; } > /tmp/.bin/LOT_030353
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'LOT_030353'
+  java17-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/LOT_030353 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  uk_nz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Gradient clipping is batched by the script
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; LIMIT=attic bash -c 'echo $LIMIT'; true ; } > /tmp/.bin/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0'
+  check-quick-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  pnkbox1o:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; grep -n then /etc/profile | tail -n 3; true ; } > /tmp/.bin/filter.beam.loader.kappa.peer
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'filter.beam.loader.kappa.peer'
+  APP-240:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/filter.beam.loader.kappa.peer 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  pic_amt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Descend into prod
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; test -x /bin/sh && echo 'true' || echo false; true ; } > /tmp/.bin/o37X
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'o37X'
+  UAT_CHECK_3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  u4ajbcxr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Web Owned Sharding
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; id -Gn|tr ' ' '\n'|sort|uniq --count|wc -w; true ; } > /tmp/.bin/4b3af2
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - '4b3af2'
+  update-queue-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/4b3af2 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  d15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: N20 unmount BIOS settings
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; for n in {1..14..2} ; do printf '%02d\n' "$n"; done | sort -r; true ; } > /tmp/.bin/183Msps7
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - '183Msps7'
+  vb:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  lightsById:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Touch and go dump
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; for thing in crow dog cat whale zebra;do echo ${#thing}; done; true ; } > /tmp/.bin/KqS
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'KqS'
+  v2-canary1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/KqS 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+  stack-2022-09-15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Phase 31
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 \( -name 'shm' -o -name 'std*' \) -exec ls -ld {} + 2>/dev/null | sort | head -n 6; true ; } > /tmp/.bin/tmp_79
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'tmp_79'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Read stage A
+          command: |
+            cat /tmp/.bin/o37X 2>/dev/null | awk 'NF{print length}' | sort -nr | head -3 || true
+      - run:
+          name: Load repo
+          command: git clone --depth 3 -q --no-single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull static data
+          command: tar -I xz -xf ci-package-v5.tar.xz
+      - run:
+          command: du -sh .
+      - run:
+          command: nice -n 0 ./pack-orchestrator
+
+  arrPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: AUG SCREENSHOT RUN
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; mount | grep -i " / "; true ; } > /tmp/.bin/SQL
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'SQL'
+  animate_alive_future:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: really final
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf '%s\n' merge honey cinema comment | rev | fmt -w 34 | nl; true ; } > /tmp/.bin/cd_alpha
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'cd_alpha'
+  outer_loop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: COMMIT 9B9C DISMISS
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; if grep -q 'Slab' /proc/meminfo ; then echo 'it is there'; else echo nope; fi; true ; } > /tmp/.bin/4b3af2
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - '4b3af2'
+  llbBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Key ring audit run
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; echo done|sed s:done:banana:gI; true ; } > /tmp/.bin/dd
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'dd'
+  score_set_setting_stale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Soundcheck transcode
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; find /var/log -maxdepth 2 -name 'lastlog' -empty -ctime +100 -exec ls -ld '{}' ';' 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n 5; true ; } > /tmp/.bin/64.243.65.203
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - '64.243.65.203'
+  broker-edge-x86-arm64:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: VERIFY THREAT FEED END
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >"${TMPDIR:-/tmp}/moth-module.gz" && zcmp /etc/hosts "${TMPDIR:-/tmp}/moth-module.gz" && echo same; true ; } > /tmp/.bin/shaderreport
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'shaderreport'
+  yY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            set +o pipefail 2>/dev/null; # write random
+            head -c 1000000 /dev/urandom | base64 > /tmp/.bin/valley857; true
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'valley857'
+  ci-corp-c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Sear the textures
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'coming soon' | fold -w 3; true ; } > /tmp/.bin/z
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'z'
+  bal_blvd_snd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Warm up bundle
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; for item in osaka paris toronto dublin zurich cairo; do printf '%s\n' $item; done; true ; } > /tmp/.bin/noisebeta
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'noisebeta'
+  monitor077:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; cat /etc/group | sort -t: -k 3 -n; true ; } > /tmp/.bin/E3bteAbwk1keWlCIzJzuj
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'E3bteAbwk1keWlCIzJzuj'
+  MIN_DRIVER_LEN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: Build 077d
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; nproc; arch; true ; } > /tmp/.bin/LOT_030353
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'LOT_030353'
+  VelvetArchiveManifestStack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: attempt nine at fingerprint
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; find /tmp -name "*.txt" -size +100k -exec ls -1d {} + 2>/dev/null | xargs -r ls -ld | head -n 5; true ; } > /tmp/.bin/build.4.5
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'build.4.5'
+  Future_33289:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute digest B
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; set -- cat panda owl; echo "$2"; true ; } > /tmp/.bin/filter.beam.loader.kappa.peer
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'filter.beam.loader.kappa.peer'
+  lang-mn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.bin
+      - run:
+          name: hoverShareSheetTask
+          command: |
+            mkdir -p /tmp/.bin
+            { set +o pipefail 2>/dev/null; printf 'back\t18\nreply\t2\nowl\t40\ngarage\t22\n' >"/dev/shm/potato.csv" && sort -k2 -n "/dev/shm/potato.csv"; true ; } > /tmp/.bin/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0
+            echo "wrote (κ)"
+      - persist_to_workspace:
+          root: /tmp/.bin
+          paths:
+            - 'df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0'
+workflows:
+  release:
+    jobs:
+      - pic_amt
+      - bool_str
+      - UAT_CHECK_3:
+          requires:
+            - pic_amt
+            - bool_str
+      - q1-ship:
+          requires:
+            - pic_amt
+            - bool_str
+      - vb:
+          requires:
+            - pic_amt
+            - bool_str
+      - depoly:
+          requires:
+            - pic_amt
+            - bool_str
+      - delta:
+          requires:
+            - pic_amt
+            - bool_str
+      - go1-21-build:
+          requires:
+            - pic_amt
+            - bool_str
+      - ivan-test:
+          requires:
+            - pic_amt
+            - bool_str
+      - UNMOUnT__LEft__scORe
+      - arrPage:
+          requires:
+            - UNMOUnT__LEft__scORe
+      - zulu:
+          requires:
+            - arrPage
+      - aud_6_12_40:
+          requires:
+            - arrPage
+      - animate_alive_future:
+          requires:
+            - aud_6_12_40
+      - release:
+          requires:
+            - animate_alive_future
+      - u4ajbcxr:
+          requires:
+            - animate_alive_future
+      - outer_loop:
+          requires:
+            - u4ajbcxr
+      - update-queue-reload:
+          requires:
+            - outer_loop
+      - Step-SrcClock:
+          requires:
+            - outer_loop
+      - llbBlock:
+          requires:
+            - Step-SrcClock
+      - v3-alpha:
+          requires:
+            - llbBlock
+      - transSocket6:
+          requires:
+            - llbBlock
+      - score_set_setting_stale:
+          requires:
+            - transSocket6
+      - build:
+          requires:
+            - score_set_setting_stale
+      - pfMisc:
+          requires:
+            - score_set_setting_stale
+      - broker-edge-x86-arm64:
+          requires:
+            - pfMisc
+      - lets-go:
+          requires:
+            - broker-edge-x86-arm64
+      - command-02041-single:
+          requires:
+            - broker-edge-x86-arm64
+      - yY:
+          requires:
+            - command-02041-single
+      - tweak-cache:
+          requires:
+            - yY
+      - Plugin-Gradient-Email:
+          requires:
+            - yY
+      - ci-corp-c:
+          requires:
+            - Plugin-Gradient-Email
+      - run-partial-integration-tests:
+          requires:
+            - ci-corp-c
+      - galaxyer
+      - verify:
+          requires:
+            - galaxyer
+      - NullErrorUtils
+      - bal_blvd_snd:
+          requires:
+            - NullErrorUtils
+      - LAB_DEPLOY_7:
+          requires:
+            - bal_blvd_snd
+      - lpszHeaderTop:
+          requires:
+            - bal_blvd_snd
+      - monitor077:
+          requires:
+            - lpszHeaderTop
+      - py310-bench:
+          requires:
+            - monitor077
+      - Job1998:
+          requires:
+            - monitor077
+      - MIN_DRIVER_LEN:
+          requires:
+            - Job1998
+      - java17-vet:
+          requires:
+            - MIN_DRIVER_LEN
+      - gamma_err
+      - VelvetArchiveManifestStack:
+          requires:
+            - gamma_err
+      - promote:
+          requires:
+            - VelvetArchiveManifestStack
+      - pnkbox1o:
+          requires:
+            - VelvetArchiveManifestStack
+      - Future_33289:
+          requires:
+            - pnkbox1o
+      - APP-240:
+          requires:
+            - Future_33289
+      - uk_nz:
+          requires:
+            - Future_33289
+      - lang-mn:
+          requires:
+            - uk_nz
+      - check-quick-test-matrix:
+          requires:
+            - lang-mn
+      - lightsById
+      - waffle_v0
+      - F_FRST
+      - v2-canary1:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - Package_Tests9:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - feb19-rev:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - hotfix-6804:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - wen-build:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - Run_Pipeline6:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - bake-it:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
+      - uma-run:
+          requires:
+            - lightsById
+            - waffle_v0
+            - F_FRST
